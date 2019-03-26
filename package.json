@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://Rotarepmi.github.io/daftacademy",
+  "homepage": "https://rotarepmi.github.io/daftacademy/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "author": "Jakub Mandra",
