@@ -9,11 +9,7 @@ module.exports = {
     filename: "main.js",
     path: buildDir
   },
-  mode: 'development',
-  devtool: 'eval',
-  devServer: {
-    contentBase: buildDir
-  },
+  mode: 'production',
   plugins: [new HtmlWebpackPlugin()],
   module: {
     rules: [
