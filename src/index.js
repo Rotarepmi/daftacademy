@@ -1,3 +1,3 @@
-import daftFunc from './script.js';
+import daftFunc from './components/script.js';
 
 daftFunc();

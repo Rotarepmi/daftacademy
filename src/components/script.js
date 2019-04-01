@@ -1,3 +1,5 @@
+import '../scss/styles.scss';
+
 export default function() {
   const { body } = document;
   const div = document.createElement('div');

@@ -14,7 +14,6 @@ module.exports = {
   devServer: {
     contentBase: buildDir
   },
-  plugins: [new HtmlWebpackPlugin()],
   module: {
     rules: [
       {
@@ -26,7 +25,19 @@ module.exports = {
             presets: ["@babel/preset-env"]
           }
         }
+      },
+      {
+        test: /\.s(a|c)ss$/,
+        use: [
+          { loader: "style-loader", options: { sourceMap: false } },
+          { loader: "css-loader", options: { sourceMap: false } },
+          { loader: "postcss-loader", options: { sourceMap: false } },
+          { loader: "sass-loader", options: { sourceMap: false } }
+        ]
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin(),
+  ],
 }

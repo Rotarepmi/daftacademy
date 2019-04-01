@@ -1,5 +1,6 @@
 var path = require('path');
 var HtmlWebpackPlugin = require("html-webpack-plugin");
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 var buildDir = path.resolve(__dirname, "dist");
 
@@ -9,8 +10,14 @@ module.exports = {
     filename: "main.js",
     path: buildDir
   },
-  mode: 'production',
-  plugins: [new HtmlWebpackPlugin()],
+  mode: 'development',
+  plugins: [
+    new HtmlWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    }),
+  ],
   module: {
     rules: [
       {
@@ -22,6 +29,15 @@ module.exports = {
             presets: ["@babel/preset-env"]
           }
         }
+      },
+      {
+        test: /\.s(a|c)ss$/,
+        use: [
+          { loader: "style-loader", options: { sourceMap: true } },
+          { loader: "css-loader", options: { sourceMap: true } },
+          { loader: "postcss-loader", options: { sourceMap: true } },
+          { loader: "sass-loader", options: { sourceMap: true } }
+        ]
       }
     ]
   }
