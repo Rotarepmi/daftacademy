@@ -1,0 +1,35 @@
+.footer {
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between; 
+
+  &__desc {
+    color: #aaa;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #8ad;
+
+    &--email {
+      color: #336;
+    }
+
+    &--icon {
+      margin: 0 5px;
+      padding: 5px;
+
+      &:first-of-type {
+        margin-left: 30px;
+      }
+
+      &:last-of-typ {
+        margin-right: 0;
+      }
+    }
+  }
+
+  
+}
