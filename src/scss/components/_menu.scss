@@ -1,0 +1,34 @@
+.menu {
+  display: flex;
+  justify-content: space-between;
+  color: #cbc;
+
+  &__item {
+    cursor: pointer;
+    transition: all .2s ease-in;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 80%;
+      height: 0;
+      border-top: solid 1px #111;
+      bottom: -5px;
+      left: 10%;
+      transition: all .2s ease-in;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    &:hover,
+    &:active {
+      color: #111;
+
+      &:before {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+}
