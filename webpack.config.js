@@ -33,18 +33,27 @@ module.exports = {
         test: /\.s(a|c)ss$/,
         use: [
           isProduction
-          ? MiniCssExtractPlugin.loader
-          : { loader: "style-loader", options: { sourceMap: isProduction } },
-          { loader: "css-loader", options: { sourceMap: isProduction } },
-          { loader: "postcss-loader", options: { sourceMap: isProduction } },
-          { loader: "sass-loader", options: { sourceMap: isProduction } }
+            ? MiniCssExtractPlugin.loader
+            : { loader: "style-loader", options: { sourceMap: !isProduction } },
+          { loader: "css-loader", options: { sourceMap: !isProduction } },
+          { loader: "postcss-loader", options: { sourceMap: !isProduction } },
+          { loader: 'resolve-url-loader', options: { sourceMap: !isProduction } },
+          { loader: "sass-loader", options: { sourceMap: !isProduction } }
         ]
+      },
+      {
+        test: /\.(jpg|png|gif|svg)$/,
+        loader: 'file-loader',
+        query: {
+          name: 'img/[name].[ext]'
+        }
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'public/index.html'
+      template: "src/index.html",
+      title: "Daftacademy"
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
