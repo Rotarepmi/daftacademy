@@ -1,3 +1,1 @@
-import daftFunc from './components/script.js';
-
-daftFunc();
+import './scss/main.scss';
