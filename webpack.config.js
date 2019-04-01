@@ -1,7 +1,10 @@
-var path = require('path');
-var HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-var buildDir = path.resolve(__dirname, "dist");
+const buildDir = path.resolve(__dirname, "dist");
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: "./src/index.js",
@@ -9,7 +12,7 @@ module.exports = {
     filename: "main.js",
     path: buildDir
   },
-  mode: 'development',
+  mode: isProduction ? 'production' : 'development',
   devtool: 'eval',
   devServer: {
     contentBase: buildDir
@@ -29,15 +32,23 @@ module.exports = {
       {
         test: /\.s(a|c)ss$/,
         use: [
-          { loader: "style-loader", options: { sourceMap: false } },
-          { loader: "css-loader", options: { sourceMap: false } },
-          { loader: "postcss-loader", options: { sourceMap: false } },
-          { loader: "sass-loader", options: { sourceMap: false } }
+          isProduction
+          ? MiniCssExtractPlugin.loader
+          : { loader: "style-loader", options: { sourceMap: isProduction } },
+          { loader: "css-loader", options: { sourceMap: isProduction } },
+          { loader: "postcss-loader", options: { sourceMap: isProduction } },
+          { loader: "sass-loader", options: { sourceMap: isProduction } }
         ]
       }
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'public/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    })
   ],
 }

@@ -1,10 +1,8 @@
 import '../scss/styles.scss';
 
 export default function() {
-  const { body } = document;
-  const div = document.createElement('div');
+  const div = document.querySelector('#root');
   const h1 = document.createElement('h1');
   h1.innerText = 'Hello World!';
   div.appendChild(h1);
-  body.appendChild(div);
 };
